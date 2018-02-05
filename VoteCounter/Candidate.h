@@ -2,7 +2,7 @@
 #include <string>
 #include <list>
 
-//setName, getName, setParty and getParty
+using namespace std;
 
 class Candidate
 {
@@ -10,33 +10,33 @@ private:
 	std::list <int> voters;//holds ids of voters for reuse when knocked out.
 	int voteCounter = 0;
 public:
-		std::string candidateName;
-		std::string candidateParty;
+		string candidateName;
+		string candidateParty;
 		
 		Candidate(){}	//default constructor
 
-		Candidate(std::string name,std::string party)
+		Candidate(string name,string party)
 		{
 			setName(name);
 			setParty(party);
 		}
 
-		void setName(std::string name)
+		void setName(string name)
 		{
 			candidateName = name;
 		}
 	
-		std::string getName()
+		string getName()
 		{
 			return candidateName;
 		}
 
-		void setParty(std::string party)
+		void setParty(string party)
 		{
 			candidateParty = party;
 		}
 
-		std::string getParty()
+		string getParty()
 		{
 			return candidateParty;
 		}

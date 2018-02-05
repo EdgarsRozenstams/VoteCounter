@@ -23,5 +23,8 @@
     <ClInclude Include="Candidate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Ballot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

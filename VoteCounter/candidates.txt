@@ -1,4 +1,12 @@
-edgars rozenstams-republicans
-tomas coll-communists
-erik pernanta-socialists
-bill trait-capitalists
+Edgars Rozenstams-republican
+Tomas Coll-communist
+Erik Pernanta-socialist
+Bill Trait-capitalist
+Alex Jones-Democrat
+#13245
+#43152
+#23415
+#52341
+#54321
+#12345
+#32145

@@ -12,7 +12,6 @@ using namespace std;
 string getCandidateName(string line);
 string getCandidateParty(string line);
 
-
 int main()
 {
 	vector<Candidate> candidates;//vector of candidates
@@ -24,12 +23,24 @@ int main()
 	{
 		while (getline(inFile, line))
 		{
-			string name = getCandidateName(line);
-			string party = getCandidateParty(line);
+			if (line[0] != '#')//candidates dont start with the # symbol
+			{
+				string name = getCandidateName(line);
+				string party = getCandidateParty(line);
 
-			candidates.push_back(Candidate(name, party));
+				candidates.push_back(Candidate(name, party));
 
-			cout << line << endl;
+				cout << line << endl;
+			}
+			else if (line[0] == '#')//ballot votes start with the # character
+			{
+				string name = getCandidateName(line);
+				string party = getCandidateParty(line);
+
+				candidates.push_back(Candidate(name, party));
+
+				cout << line << endl;
+			}
 		}
 		inFile.close();
 	}
@@ -40,8 +51,6 @@ int main()
 	{
 		cout << candidates[i].getName() << endl;
 	}
-
-
 	system("pause");
 	return 0;
 }
