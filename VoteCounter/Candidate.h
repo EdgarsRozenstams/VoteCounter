@@ -4,11 +4,11 @@
 
 //setName, getName, setParty and getParty
 
-class Candidate
+class Candidate(std::string name, std::string party)
 {
 private:
 	std::list <int> voters;
-	int voteCounter;
+	int voteCounter = 0;
 public:
 		std::string name;
 		std::string party;
@@ -32,8 +32,5 @@ public:
 		{
 			return party;
 		}
-
-
-
 
 };
