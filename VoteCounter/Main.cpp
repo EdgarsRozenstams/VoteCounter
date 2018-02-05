@@ -3,15 +3,24 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 using namespace std;
 
 int main()
 {
-	std::ifstream inFile;
+	ifstream inFile;
 
 	inFile.open("candidates.txt", std::ios::in);
-	//inFile >> numbers;//save .txt file numbers to array.
-	inFile.close();
-
+	
+	string line;
+	if (inFile.is_open())
+	{
+		while (getline(inFile, line))
+		{
+			cout << line << endl;
+		}
+		inFile.close();
+	}
+	system("pause");
 	return 0;
 }

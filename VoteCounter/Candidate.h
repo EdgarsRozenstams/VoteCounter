@@ -4,16 +4,16 @@
 
 //setName, getName, setParty and getParty
 
-class Candidate(std::string name, std::string party)
+class Candidate
 {
 private:
-	std::list <int> voters;
+	std::list <int> voters;//holds ids of voters for reuse when knocked out.
 	int voteCounter = 0;
 public:
 		std::string name;
 		std::string party;
 
-		void setName()
+		void setName(std::string name)
 		{
 			//read in from file or sent in from cpp file which read it from a file
 		}
@@ -23,7 +23,7 @@ public:
 			return name;
 		}
 
-		void setParty()
+		void setParty(std::string party)
 		{
 			//read in from file or sent in from cpp file which read it from a file
 		}
