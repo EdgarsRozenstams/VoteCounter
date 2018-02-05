@@ -10,15 +10,21 @@ public:
 
 	Ballot(){}
 
-	Ballot(int pref, string candidate) 
+	Ballot(int pref, string candidate) //i could send the list of candidates and the list of votes for one balllot.
 	{
+		setPreference(pref, candidate);
 	}
 
-/*
-	setPreference(n, c)
-	getPreference(n) :
+	void setPreference(int pref, string candidate)
+	{
 
-*/
+	}
+	string getPreference(int pref)
+	{
+		return "";
+	}
+
+
 
 };
 
