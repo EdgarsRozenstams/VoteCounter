@@ -1,3 +1,2 @@
 ﻿  Main.cpp
-c:\users\rozen_000\desktop\repos\votecounter\main.cpp(41): warning C4018: '<': signed/unsigned mismatch
-  VoteCounter.vcxproj -> C:\Users\rozen_000\Desktop\Repos\VoteCounter\Debug\VoteCounter.exe
+LINK : fatal error LNK1104: cannot open file 'C:\Users\rozen_000\Desktop\Repos\VoteCounter\Debug\VoteCounter.exe'
