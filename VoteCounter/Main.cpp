@@ -19,15 +19,14 @@ int main()
 	vector<int> candidatePref;
 	vector<Ballot> ballots;
 	ifstream inFile;
-	inFile.open("candidates.txt",std::ios::in);
+	inFile.open("candidates.txt", std::ios::in);
 	string line;
-	vector<int> candidatePref;
 
 	if (inFile.is_open())
 	{
 		while (getline(inFile, line))
 		{
-			if (line[0] != '#')//candidates dont start with the # symbol
+			if (line[0] != '#')	//candidates dont start with the # symbol
 			{
 				string name = getCandidateName(line);
 				string party = getCandidateParty(line);
@@ -36,13 +35,15 @@ int main()
 
 				cout << line << endl;
 			}
-			else if (line[0] == '#')//ballot votes start with the # character
+			else if (line[0] == '#')	//ballot votes start with the # character
 			{
-				line.erase(0);
-				for (int i = 0; i < line.length();i++)
+				candidatePref.clear();
+				line = line.substr(1); //removes the '#'
+				for (int i = 0; i < line.length();i++) //goes through preferance list
 				{
-					candidatePref.push_back((int)line[i]);
+					candidatePref.push_back(line[i]-'0'); 
 				}
+
 				ballots.push_back(Ballot(candidatePref, candidates));
 			}
 		}
@@ -72,6 +73,6 @@ string getCandidateParty(string line)
 {
 	string party;
 	size_t pos = line.find('-');
-	party = line.substr(pos);
+	party = line.substr(pos+1);
 	return party;
 }

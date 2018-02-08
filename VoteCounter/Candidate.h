@@ -1,3 +1,6 @@
+//Name	:Edgars Rozenstams
+//Code	:C00195570
+
 #pragma once
 #include <string>
 #include <list>
@@ -40,5 +43,10 @@ public:
 		{
 			return candidateParty;
 		}
+		void inrementVoteCount()
+		{
+			voteCounter++;
+		}
+
 
 };
