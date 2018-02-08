@@ -10,9 +10,9 @@ using namespace std;
 class Candidate
 {
 private:
-	std::list <int> voters;//holds ids of voters for reuse when knocked out.
-	int voteCounter = 0;
-public:
+		list <int> voters;//holds ids of voters for reuse when knocked out.
+		int voteCounter = 0;
+public:	
 		string candidateName;
 		string candidateParty;
 		
@@ -46,6 +46,9 @@ public:
 		void inrementVoteCount()
 		{
 			voteCounter++;
+		}
+		int getVotes() {
+			return voteCounter;
 		}
 
 

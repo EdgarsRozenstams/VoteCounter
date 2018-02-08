@@ -16,8 +16,9 @@ string getCandidateParty(string line);
 int main()
 {
 	vector<Candidate> candidates;//vector of candidates
-	vector<int> candidatePref;
 	vector<Ballot> ballots;
+	vector<int> candidatePref;
+
 	ifstream inFile;
 	inFile.open("candidates.txt", std::ios::in);
 	string line;
@@ -41,7 +42,7 @@ int main()
 				line = line.substr(1); //removes the '#'
 				for (int i = 0; i < line.length();i++) //goes through preferance list
 				{
-					candidatePref.push_back(line[i]-'0'); 
+					candidatePref.push_back(line[i]-'0');
 				}
 
 				ballots.push_back(Ballot(candidatePref, candidates));
@@ -54,7 +55,7 @@ int main()
 
 	for (size_t i = 0; i < candidates.size(); i++)	//i is assigned to size_t since its being compared to a nother size_t
 	{
-		cout << candidates[i].getName()<< " for " << candidates[i].getParty() << endl;
+		cout << candidates[i].getName() << " for " << candidates[i].getParty() << " with " << candidates[i].getVotes() << endl;
 	}
 	system("pause");
 	return 0;
