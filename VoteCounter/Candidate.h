@@ -11,8 +11,9 @@ class Candidate
 {
 private:
 		list <int> voters;//holds ids of voters for reuse when knocked out.
-		int voteCounter = 0;
+		//int voteCounter = 0;
 public:	
+		int voteCounter = 0;
 		string candidateName;
 		string candidateParty;
 		
@@ -43,11 +44,14 @@ public:
 		{
 			return candidateParty;
 		}
-		void inrementVoteCount()
+
+		void incrementVoteCount()
 		{
 			voteCounter++;
 		}
-		int getVotes() {
+
+		int getVotes() 
+		{
 			return voteCounter;
 		}
 

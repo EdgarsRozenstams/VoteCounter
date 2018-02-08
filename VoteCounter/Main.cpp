@@ -12,6 +12,8 @@ using namespace std;
 
 string getCandidateName(string line);
 string getCandidateParty(string line);
+void addVotes(vector<Ballot> ballots, vector<Candidate>& candidate);
+void printCandidates(vector<Candidate> candidates);
 
 int main()
 {
@@ -50,17 +52,12 @@ int main()
 		}
 		inFile.close();
 	}
+	addVotes(ballots, candidates);
+	printCandidates(candidates);
 
-	cout << "--------candidates--------" << endl;
-
-	for (size_t i = 0; i < candidates.size(); i++)	//i is assigned to size_t since its being compared to a nother size_t
-	{
-		cout << candidates[i].getName() << " for " << candidates[i].getParty() << " with " << candidates[i].getVotes() << endl;
-	}
 	system("pause");
 	return 0;
 }
-
 
 string getCandidateName(string line)
 {
@@ -76,4 +73,29 @@ string getCandidateParty(string line)
 	size_t pos = line.find('-');
 	party = line.substr(pos+1);
 	return party;
+}
+
+void addVotes(vector<Ballot> ballots, vector<Candidate>& candidates) 
+{
+	int prefCandidate = 0;
+	for (int i = 0; i < ballots.size(); i++)
+	{
+		for (int x = 0; x < candidates.size();x++)
+		{
+			if (candidates[x].getName() == ballots[i].getPreference().getName())
+			{
+				candidates[x].incrementVoteCount();
+			}
+		}		
+	}
+}
+
+void printCandidates(vector<Candidate> candidates)
+{
+	cout << "--------candidates--------" << endl;
+	for (int i = 0; i < candidates.size(); i++)
+	{
+		cout << candidates[i].getName() << " " << candidates[i].getVotes() << endl;
+	}
+
 }
