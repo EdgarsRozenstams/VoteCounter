@@ -14,6 +14,8 @@ string getCandidateName(string line);
 string getCandidateParty(string line);
 void addVotes(vector<Ballot> ballots, vector<Candidate>& candidate);
 void printCandidates(vector<Candidate> candidates);
+Candidate getLoser(vector<Candidate>& candidates);
+void deleteCandidate(vector<Candidate>& candiates, Candidate loser);
 
 int main()
 {
@@ -52,8 +54,13 @@ int main()
 		}
 		inFile.close();
 	}
-	addVotes(ballots, candidates);
-	printCandidates(candidates);
+
+	while (candidates.size() > 1)
+	{
+		addVotes(ballots, candidates);
+		printCandidates(candidates);
+		deleteCandidate(candidates, getLoser(candidates));
+	}
 
 	system("pause");
 	return 0;
@@ -97,5 +104,36 @@ void printCandidates(vector<Candidate> candidates)
 	{
 		cout << candidates[i].getName() << " " << candidates[i].getVotes() << endl;
 	}
-
 }
+
+Candidate getLoser(vector<Candidate>& candidates)
+{
+	int voteCount = candidates[0].getVotes();
+	vector<Candidate> losers;
+	Candidate lowest = candidates[0];
+
+	for (int i = 0 ;i < candidates.size(); i++)
+	{
+		if (candidates[i].getVotes() < lowest.getVotes() )
+		{
+			lowest = candidates[i];
+		}
+	}
+	//for now just set the first lowest as the looser
+	return lowest;
+}
+
+void deleteCandidate(vector<Candidate>& candiates, Candidate loser)
+{
+	//loser.reasignVotes();
+	for (int i = 0; i < candiates.size(); i++) ///doesnt delete object : look into.
+	{
+		if (candiates[i].getName() == loser.getName()) // TODO: find out why i get vector out of bounds erro
+		{
+			//sets the knocked out candidate object to NULL
+			Candidate *empty = &candiates[i];
+			empty = NULL; 
+		}
+	}
+}
+

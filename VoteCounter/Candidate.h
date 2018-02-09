@@ -10,9 +10,9 @@ using namespace std;
 class Candidate
 {
 private:
-		list <int> voters;//holds ids of voters for reuse when knocked out.
-		//int voteCounter = 0;
-public:	
+		list <int> voters;//holds all the allots that voted for this candidate/
+public:
+		
 		int voteCounter = 0;
 		string candidateName;
 		string candidateParty;
@@ -54,6 +54,16 @@ public:
 		{
 			return voteCounter;
 		}
-
-
+		void addVoter(int id)
+		{
+			voters.push_back(id);
+		}
+		/*void reasignVotes();
+		{
+			for (int i =0 ;i < voters.size(); i++) //goes through all ballot which voted for this candidate
+			{
+				//voters[i];
+				cout << "hi";
+			}
+		}*/
 };

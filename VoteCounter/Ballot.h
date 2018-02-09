@@ -7,18 +7,22 @@
 #include "Candidate.h"
 
 using namespace std;
+static int ID = 0;
 
 class Ballot
 {
 public:
-	static int id;
 	vector<Candidate> preferance; // a vector of candidates sorted in order of preferances (0 == preffered candidate)
+	int prefferedVote = 0; //keeps track of the ballots preffered candidate, incremments whenever the preffered candidate gets knocked out
+	int id = ID;
 
 	Ballot(){}
 
 	Ballot(vector<int> &votes, vector<Candidate> &candidate)
 	{
 		setPreference(votes, candidate);
+		assignVoters(preferance, ID);
+		ID++;
 	}
 
 	//sorts preferances into a vector of candidates in order of preferance,
@@ -32,9 +36,14 @@ public:
 
 	Candidate getPreference()
 	{
-		return preferance[0];
+		return preferance[prefferedVote];
 	}
 
+	// assigns the id of the ballot that voted for the candidate
+	void assignVoters(vector<Candidate>& preferance, int ID)
+	{
+		preferance[prefferedVote].addVoter(ID);
+	}
 
 };
 
