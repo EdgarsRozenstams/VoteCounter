@@ -16,12 +16,16 @@ void addVotes(vector<Ballot> ballots, vector<Candidate>& candidate);
 void printCandidates(vector<Candidate> candidates);
 Candidate getLoser(vector<Candidate>& candidates);
 void deleteCandidate(vector<Candidate>& candiates, Candidate loser);
+void reAsignVote(vector<Candidate>& candiates, Candidate loser, vector<Ballot>& ballots);
+int noOfCandidate = 0;
 
 int main()
 {
 	vector<Candidate> candidates;//vector of candidates
 	vector<Ballot> ballots;
 	vector<int> candidatePref;
+	vector<Candidate> eliminated;
+	
 
 	ifstream inFile;
 	inFile.open("candidates.txt", std::ios::in);
@@ -37,6 +41,7 @@ int main()
 				string party = getCandidateParty(line);
 
 				candidates.push_back(Candidate(name, party));
+				noOfCandidate++;
 
 				cout << line << endl;
 			}
@@ -44,21 +49,23 @@ int main()
 			{
 				candidatePref.clear();
 				line = line.substr(1); //removes the '#'
-				for (int i = 0; i < line.length();i++) //goes through preferance list
+				for (int i = 0; i < line.length();i++) //goes through prefrance list
 				{
 					candidatePref.push_back(line[i]-'0');
 				}
 
-				ballots.push_back(Ballot(candidatePref, candidates));
+				ballots.push_back(Ballot(candidatePref, candidates));//crreates ballot obj
 			}
 		}
 		inFile.close();
 	}
 
-	while (candidates.size() > 1)
-	{
+	while(noOfCandidate != 0) //(candidates.size() > 1)
+	{	
 		addVotes(ballots, candidates);
 		printCandidates(candidates);
+		reAsignVote(candidates, getLoser(candidates), ballots);
+		
 		deleteCandidate(candidates, getLoser(candidates));
 	}
 
@@ -85,13 +92,13 @@ string getCandidateParty(string line)
 void addVotes(vector<Ballot> ballots, vector<Candidate>& candidates) 
 {
 	int prefCandidate = 0;
-	for (int i = 0; i < ballots.size(); i++)
+	for (int i = 0; i < ballots.size(); i++) //increments through ballots
 	{
-		for (int x = 0; x < candidates.size();x++)
+		for (int x = 0; x < candidates.size();x++) //increments through candidates
 		{
-			if (candidates[x].getName() == ballots[i].getPreference().getName())
+			if (candidates[x].getName() == ballots[i].getPreference().getName()) //compares candidate name to ballt preffered name
 			{
-				candidates[x].incrementVoteCount();
+				candidates[x].incrementVoteCount();//increments vote
 			}
 		}		
 	}
@@ -126,14 +133,38 @@ Candidate getLoser(vector<Candidate>& candidates)
 void deleteCandidate(vector<Candidate>& candiates, Candidate loser)
 {
 	//loser.reasignVotes();
-	for (int i = 0; i < candiates.size(); i++) ///doesnt delete object : look into.
+	for (int i = 0; i < candiates.size(); i++) 
 	{
-		if (candiates[i].getName() == loser.getName()) // TODO: find out why i get vector out of bounds erro
+		if (candiates[i].getName() == loser.getName()) 
 		{
-			//sets the knocked out candidate object to NULL
-			Candidate *empty = &candiates[i];
-			empty = NULL; 
+
+			candiates.erase(candiates.begin() + i);
+			noOfCandidate -= 1;
 		}
 	}
 }
 
+void reAsignVote(vector<Candidate>& candiates, Candidate loser, vector<Ballot>& ballots)
+{
+	int candId;
+	for (int i = 0; i < candiates.size(); i++)
+	{
+		if (candiates[i].getName() == loser.getName())
+		{
+			for (int v = 0 ; v < candiates[i].voterIDs.size(); v++)//goes through candidates voters
+			{
+				candId = candiates[i].voterIDs[v];
+				for (int a = 0; a < ballots.size(); a++) //checks id against ballots
+				{
+					if (candId == ballots[a].id) //eg first candidates first voter's [ie a = 0, i = 0]
+					{
+						ballots[a].assignVoters(candiates, candId); //need to call the assignvotes method here to move votes,
+					}
+				}
+			}
+		}
+	}
+}
+
+//addvote readds the old votes so yu need to either remove original vote distibution
+//or move the impementation of the method to later inthe loop

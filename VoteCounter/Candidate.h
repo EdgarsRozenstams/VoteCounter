@@ -3,16 +3,14 @@
 
 #pragma once
 #include <string>
-#include <list>
+#include <vector>
 
 using namespace std;
 
 class Candidate
 {
-private:
-		list <int> voters;//holds all the allots that voted for this candidate/
 public:
-		
+		vector <int> voterIDs;//holds all the allots that voted for this candidate/
 		int voteCounter = 0;
 		string candidateName;
 		string candidateParty;
@@ -47,7 +45,7 @@ public:
 
 		void incrementVoteCount()
 		{
-			voteCounter++;
+			voteCounter+=1;
 		}
 
 		int getVotes() 
@@ -56,14 +54,8 @@ public:
 		}
 		void addVoter(int id)
 		{
-			voters.push_back(id);
+			voterIDs.push_back(id);
 		}
-		/*void reasignVotes();
-		{
-			for (int i =0 ;i < voters.size(); i++) //goes through all ballot which voted for this candidate
-			{
-				//voters[i];
-				cout << "hi";
-			}
-		}*/
+		
 };
+
