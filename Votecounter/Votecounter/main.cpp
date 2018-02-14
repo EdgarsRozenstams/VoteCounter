@@ -23,9 +23,7 @@ int main()
 	vector<Candidate> candidates;//vector of candidates
 	vector<Ballot> ballots;
 	vector<int> candidatePref;
-	vector<Candidate> eliminated;
-
-
+	
 	ifstream inFile;
 	inFile.open("candidates.txt", std::ios::in);
 	string line;
@@ -62,6 +60,7 @@ int main()
 	while (noOfCandidate > 1)
 	{
 		printCandidates(candidates);
+		cout << "\n[Candidate : "<< getLoser(candidates).getName() << " IS ELIMINATED!!!]" <<endl;
 		reAsignVote(candidates, getLoser(candidates), ballots); //reasign losing candidates votes
 		deleteCandidate(candidates, getLoser(candidates), ballots);
 	}	

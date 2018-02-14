@@ -1,1 +1,14 @@
-﻿  Votecounter.vcxproj -> C:\Users\ASUS ROG\source\repos\Votecounter\Debug\Votecounter.exe
+﻿  main.cpp
+d:\votecounter\votecounter\ballot.h(32): warning C4018: '<': signed/unsigned mismatch
+d:\votecounter\votecounter\ballot.h(49): warning C4018: '<': signed/unsigned mismatch
+d:\votecounter\votecounter\ballot.h(68): warning C4018: '<': signed/unsigned mismatch
+d:\votecounter\votecounter\main.cpp(51): warning C4018: '<': signed/unsigned mismatch
+d:\votecounter\votecounter\main.cpp(96): warning C4018: '<': signed/unsigned mismatch
+d:\votecounter\votecounter\main.cpp(107): warning C4018: '<': signed/unsigned mismatch
+d:\votecounter\votecounter\main.cpp(119): warning C4018: '<': signed/unsigned mismatch
+d:\votecounter\votecounter\main.cpp(127): warning C4018: '<': signed/unsigned mismatch
+d:\votecounter\votecounter\main.cpp(136): warning C4018: '<': signed/unsigned mismatch
+d:\votecounter\votecounter\main.cpp(140): warning C4018: '<': signed/unsigned mismatch
+d:\votecounter\votecounter\main.cpp(143): warning C4018: '<': signed/unsigned mismatch
+  Votecounter.vcxproj -> D:\Votecounter\Debug\Votecounter.exe
+  Votecounter.vcxproj -> D:\Votecounter\Debug\Votecounter.pdb (Partial PDB)
