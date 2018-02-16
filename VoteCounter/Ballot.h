@@ -12,19 +12,17 @@ static int ID = 100;
 class Ballot
 {
 public:
-	// a vector of candidates sorted in order of preferances (0 == preffered candidate)
-	vector<Candidate> preferance;
 
-	//keeps track of the ballots preffered candidate, incremments whenever the preffered candidate gets knocked out
-	int prefferedVote = 0; 
-	int id = ID;
+	vector<Candidate> preferance;	//A vector of candidates sorted in order of preferances (0 == preffered candidate)
+	int prefferedVote = 0;			//keeps track of the ballots preffered candidate, incremments whenever the preffered candidate gets knocked out
+	int id = ID;					//The Ballots ID
 
-	Ballot(){}
+	Ballot() {}
 
 	Ballot(vector<int> &votes, vector<Candidate> &candidate)
 	{
 		setPreference(votes, candidate);
-		//assignVoters(candidate ,ID);
+		assignVoters(candidate, ID); // assign initial votes.
 		ID++;
 	}
 
@@ -33,26 +31,27 @@ public:
 	{
 		for (int i = 0; i < votes.size(); i++)
 		{
-			preferance.push_back( candidate[votes[i]-1]); //push back the nth candidate to pref vector. (eg: #3412, i=2 > push back the second prefered candidate (4th candidate))
+			preferance.push_back(candidate[votes[i] - 1]); //push back the nth candidate to pref vector. (eg: #3412, i=2 > push back the second prefered candidate (4th candidate))
 		}
 	}
 
+	//returnd Prefered candidate from this ballot
 	Candidate getPreference()
 	{
-		return preferance[0];
+		return preferance[prefferedVote];
 	}
 
 	// assigns the id of the ballot that voted for the candidate
-	void assignVoters( vector<Candidate>& candidates, int ID)
+	void assignVoters(vector<Candidate>& candidates, int Id)
 	{
 		Candidate preference = getPreference();
-		//finds the preffered candidate and updates thevoter count.
+		//finds the preffered candidate and updates their voter count and voter id's.
 		for (int i = 0; i < candidates.size(); i++)
 		{
-			if (preferance[0].getName() == candidates[i].getName())
+			if (preferance[prefferedVote].getName() == candidates[i].getName())
 			{
 				candidates[i].incrementVoteCount();
-				candidates[i].addVoter(ID);
+				candidates[i].addVoter(this->id);
 			}
 		}
 	}
@@ -60,7 +59,19 @@ public:
 	//increment prefered candidate
 	void incrementPreferedVote()
 	{
-		prefferedVote += 1;
+		this->preferance.erase(preferance.begin()); //by deleting the preffered candidate the second most prefered is not at [0]
+	}
+
+	//deletes the knocked out candidates from the preffered list so they dont get the votes anymore.
+	void deleteCandidate(Candidate loser)
+	{
+		for (int i = 0; i < this->preferance.size(); i++)
+		{
+			if (preferance[i].getName() == loser.getName())
+			{
+				preferance.erase(preferance.begin() + i);
+			}
+		}
 	}
 };
 
